@@ -41,6 +41,7 @@ Item.prototype.renderSingleItem = function(img, p){
 // ------------------------- Global Functions ------------------------ //
 
 function randomItems(){
+
   let oneIndex = Math.floor(Math.random()*Item.allItems.length);
   itemOne =  Item.allItems[oneIndex]
 
@@ -58,6 +59,29 @@ function randomItems(){
 
   renderAllItems(itemOne, itemTwo, itemThree);
 }
+
+// function randomItems(){
+
+//   const unavailableItems = [itemOne, itemTwo, itemThree];
+
+//   while(unavailableItems.includes(itemOne)){
+//     let oneIndex = Math.floor(Math.random()*Item.allItems.length);
+//     itemOne =  Item.allItems[oneIndex]
+//   }
+//   unavailableItems.push(oneIndex);
+//   let twoIndex;
+//   while(unavailableItems.includes(itemTwo)){
+//     twoIndex = Math.floor(Math.random()*Item.allItems.length);
+//     itemTwo = Item.allItems[twoIndex]
+//   }
+//   unavailableItems.push(twoIndex);
+//   let threeIndex;
+//   while(unavailableItems.includes(itemThree)){
+//     threeIndex = Math.floor(Math.random()*Item.allItems.length);
+//     itemThree = Item.allItems[threeIndex]
+//   }
+//   renderAllItems(itemOne, itemTwo, itemThree);
+// }
 
 function renderAllItems(itemOne, itemTwo, itemThree){
   itemOne.renderSingleItem(itemOneImgElem,itemOnePElem)
@@ -78,9 +102,56 @@ function clickerHandler(event){
     if(rounds === 0){
       allItemsSectionElem.removeEventListener('click', clickerHandler)
       renderResults();
+      renderChart();
     }
     randomItems();
   }
+}
+
+function renderChart() {
+  const itemData = [];
+  const itemLabels = [];
+
+  for (let item of Item.allItems) {
+    itemData.push(item.votes);
+    itemLabels.push(item.name);
+  }
+
+var ctx = document.getElementById('itemChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: itemLabels,
+        datasets: [{
+            label: 'Item Votes',
+            data: itemData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 }
 
 function renderResults(){
@@ -108,10 +179,10 @@ Item.allItems.push(new Item('cthulhu', './busMallAssets/lab/assets/cthulhu.jpg')
 Item.allItems.push(new Item('dog duck', './busMallAssets/lab/assets/dog-duck.jpg'));
 Item.allItems.push(new Item('dragon', './busMallAssets/lab/assets/dragon.jpg'));
 Item.allItems.push(new Item('pen', './busMallAssets/lab/assets/pen.jpg'));
-Item.allItems.push(new Item('pet sweep', './busMallAssets/lab/assets/pet-sweep.jpg'));
+Item.allItems.push(new Item('pet-sweep', './busMallAssets/lab/assets/pet-sweep.jpg'));
 Item.allItems.push(new Item('scissors', './busMallAssets/lab/assets/scissors.jpg'));
 Item.allItems.push(new Item('shark', './busMallAssets/lab/assets/shark.jpg'));
-Item.allItems.push(new Item('sweep', './busMallAssets/lab/assets/sweep.jpg'));
+Item.allItems.push(new Item('sweep', './busMallAssets/lab/assets/sweep.png'));
 Item.allItems.push(new Item('tauntaun', './busMallAssets/lab/assets/tauntaun.jpg'));
 Item.allItems.push(new Item('unicorn', './busMallAssets/lab/assets/unicorn.jpg'));
 Item.allItems.push(new Item('water can', './busMallAssets/lab/assets/water-can.jpg'));
