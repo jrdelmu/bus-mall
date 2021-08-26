@@ -60,20 +60,22 @@ function randomItems(){
   renderAllItems(itemOne, itemTwo, itemThree);
 }
 
+
+
 // function randomItems(){
 
 //   const unavailableItems = [itemOne, itemTwo, itemThree];
 
-//   while(unavailableItems.includes(itemOne)){
-//     let oneIndex = Math.floor(Math.random()*Item.allItems.length);
-//     itemOne =  Item.allItems[oneIndex]
-//   }
-//   unavailableItems.push(oneIndex);
-//   let twoIndex;
-//   while(unavailableItems.includes(itemTwo)){
-//     twoIndex = Math.floor(Math.random()*Item.allItems.length);
-//     itemTwo = Item.allItems[twoIndex]
-//   }
+  // while(unavailableItems.includes(itemOne)){
+  //   let oneIndex = Math.floor(Math.random()*Item.allItems.length);
+  //   itemOne =  Item.allItems[oneIndex]
+  // }
+  // unavailableItems.push(oneIndex);
+  // let twoIndex;
+  // while(unavailableItems.includes(itemTwo)){
+  //   twoIndex = Math.floor(Math.random()*Item.allItems.length);
+  //   itemTwo = Item.allItems[twoIndex]
+  // }
 //   unavailableItems.push(twoIndex);
 //   let threeIndex;
 //   while(unavailableItems.includes(itemThree)){
@@ -105,6 +107,7 @@ function clickerHandler(event){
       renderChart();
     }
     randomItems();
+    storeItemsStorage();
   }
 }
 
@@ -164,6 +167,36 @@ function renderResults(){
   }
 }
 
+//---------------Storage------------------//
+function storeItemsStorage(){
+  const stringifiedItems = JSON.stringify(Item.allItems);
+  localStorage.setItem('items', stringifiedItems);
+}
+
+function getItemsStorage(){
+  const stringifiedItems = localStorage.getItem('items')
+  if(stringifiedItems){
+    const parsedItems = JSON.parse(stringifiedItems);
+    // for(let item of parsedItems){
+    //   const myItem =new Item(item.name, item.image, item.timesShown, item.votes);
+    //   Item.allItems.push(myItem);
+    //   myItem.renderSingleItem();
+    // }
+    for (let item of parsedItems) {
+      let currName= item.name;
+
+      for (let saveItem of Item.allItems) {
+        let saveName = saveItem.name;
+
+        if (currName === saveName) {
+          saveItem.votes = item.votes;
+          saveItem.timesShown = item.timesShown;
+        }
+      }
+    } 
+  }
+}
+
 allItemsSectionElem.addEventListener('click', clickerHandler);
 
 // ------------------------- Call Functions -------------------------- //
@@ -189,3 +222,4 @@ Item.allItems.push(new Item('water can', './busMallAssets/lab/assets/water-can.j
 Item.allItems.push(new Item('wine glass', './busMallAssets/lab/assets/wine-glass.jpg'));
 
 randomItems();
+getItemsStorage();
