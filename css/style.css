@@ -1,5 +1,11 @@
+body{
+  background-color: #5bccf6;
+}
+
 main{
   display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fcde67;
 }
 
 /* #mall_items{
@@ -12,6 +18,7 @@ header{
   border: 1px solid black;
   display: flex;
   padding: 25px 0px 25px 0px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #productlist{
@@ -28,6 +35,25 @@ ul{
   padding: 25px 25px 100px 25px;
 }
 
+
+.content{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#img1_p{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+#img2_p{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+#img3_p{
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
 #item1_img {
   /* display: flex;
   justify-content: space-evenly; */
@@ -35,12 +61,11 @@ ul{
   max-height: 200px;
   width: auto;
   height: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border: 5px solid black;
+  border: 1px solid black;
   border-radius: 10px;
-
+  box-shadow: 10px 5px 5px black;
 }
+
 #item2_img {
   /* display: flex;
   justify-content: space-evenly; */
@@ -48,12 +73,11 @@ ul{
   max-height: 200px;
   width: auto;
   height: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border: 5px solid black;
+  border: 1px solid black;
   border-radius: 10px;
-
+  box-shadow: 10px 5px 5px black;
 }
+
 #item3_img {
   /* display: flex;
   justify-content: space-evenly; */
@@ -61,11 +85,9 @@ ul{
   max-height: 200px;
   width: auto;
   height: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  border: 5px solid black;
+  border: 1px solid black;
   border-radius: 10px;
-
+  box-shadow: 10px 5px 5px black;
 }
 
 main{
@@ -74,10 +96,8 @@ main{
 
 article{
   height: 100px;
-  position:relative;
-  border: 1px solid black;
-  padding-top: 75px;
-  padding-bottom: 75px;
+  padding: 75px 25px 75px 25px;
+  text-indent: 30px;
 }
 
 #all_items{
